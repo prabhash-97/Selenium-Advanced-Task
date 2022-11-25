@@ -7,10 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SeleniumExtras.PageObjects;
 using OpenQA.Selenium.Support.UI;
-using Selenuim_Web_Drive_Task.Singletone;
-using Selenuim_Web_Drive_Task.Factory;
-using System.Drawing.Drawing2D;
-using OpenQA.Selenium.Firefox;
+
 using OpenQA.Selenium.Interactions;
 
 namespace Selenuim_Web_Drive_Task.PageObjects 
@@ -29,9 +26,10 @@ namespace Selenuim_Web_Drive_Task.PageObjects
             PageFactory.InitElements(driver, this);
         }
 
-        private IWebElement emailTextBox => driver.FindElement(By.CssSelector("input[id=philadelphia-field-email]"));
+        private IWebElement emailTextBox => driver.FindElement(By.XPath("//*[@id=\"philadelphia-field-email\"]"));
+        //*[@id="philadelphia-field-email"]
         private IWebElement signUpButton => driver.FindElement(By.XPath(".//*[@id='philadelphia-field-submit']"));
-        private IWebElement SAPtitle => driver.FindElement(By.XPath("//*[@id=\"site-name\"]/a"));
+        private IWebElement sapTitle => driver.FindElement(By.XPath("//*[@id=\"site-name\"]/a"));
         private IWebElement course => driver.FindElement(By.XPath(".//*[@id='awf_field-91977689']"));
         private IWebElement From => driver.FindElement(By.XPath("//*[@id=\"credit2\"]/a"));
         private IWebElement To => driver.FindElement(By.XPath("//*[@id=\"bank\"]/li"));
@@ -68,12 +66,12 @@ namespace Selenuim_Web_Drive_Task.PageObjects
 
         public void IsTitleExists()
         {
-            Assert.AreEqual(SAPtitle.Enabled, true);
+            Assert.AreEqual(sapTitle.Enabled, true);
         }
 
         public void Title()
         {
-            Assert.AreEqual("Demo Site", SAPtitle.Text);
+            Assert.AreEqual("Demo Site", sapTitle.Text);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
         }
         public void Select()

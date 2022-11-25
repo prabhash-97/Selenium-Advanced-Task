@@ -13,10 +13,9 @@ namespace Selenuim_Web_Drive_Task.Test
 {
     public class TestClass_Singletone
     {
-        //IWebDriver driver;
 
         [SetUp]
-        public void startBrowser()
+        public void StartBrowser()
         {
             HomePage_Singleton home_page = new HomePage_Singleton();
             home_page.GoToPage();
@@ -26,16 +25,15 @@ namespace Selenuim_Web_Drive_Task.Test
         public void Test_Singleton()
         {
             HomePage_Singleton home_page = new HomePage_Singleton();
-            //act
             home_page.Title();
-            //assert
             home_page.IsTitleExists();
         }
+        
 
         [TearDown]
-        public void closeBrowser()
+        public void CloseBrowser()
         {
-            Browser.GetInstance().driver.Quit();
+            Browser.GetInstance().driver.Close();
         }
     }
 }
